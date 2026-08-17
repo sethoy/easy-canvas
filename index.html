@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Canvas Prints Clone</title>
+    <style>
+        /* Base Reset */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f4f4; color: #333; }
+        a { text-decoration: none; color: inherit; }
+        
+        /* Utility Classes */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .flex { display: flex; }
+        .justify-between { justify-content: space-between; }
+        .align-center { align-items: center; }
+
+        /* Top Bar */
+        .top-bar { background-color: #1a365d; color: white; font-size: 0.8rem; padding: 8px 0; }
+        .top-bar .container { display: flex; justify-content: space-between; align-items: center; }
+        .top-links a { margin-left: 15px; }
+
+        /* Main Navigation */
+        .main-nav { background-color: #2b7a9f; color: white; padding: 15px 0; }
+        .main-nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: bold; font-style: italic; }
+        .logo span { font-style: normal; font-weight: 800; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 20px; font-weight: 600; font-size: 0.95rem; }
+        
+        /* Promo Banner */
+        .promo-banner { background-color: #3bb4e7; color: white; text-align: center; padding: 10px; font-weight: bold; font-size: 0.9rem; }
+
+        /* Hero Section */
+        .hero { 
+            /* Replace the URL below with your actual background image from image_e9df7b.jpg */
+            background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), url('images/background.avif') no-repeat center center/cover;
+            padding: 60px 0;
+            min-height: 600px;
+        }
+        .hero-content { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; }
+        
+        /* Hero Left Content */
+        .hero-left { flex: 1; margin-top: 20px; }
+        .upload-cards { display: flex; gap: 20px; margin-bottom: 30px; }
+        .card-img { width: 100%; height: auto; object-fit: cover; }
+        .upload-btn { 
+            background-color: #f10086; color: white; width: 250px; height: 180px; 
+            display: flex; justify-content: center; align-items: center; text-align: center;
+            font-size: 2rem; font-weight: bold; border: 5px solid white; border-radius: 10px;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1); line-height: 1.2;
+        }
+        
+        .reviews { color: white; font-size: 1.2rem; font-weight: bold; display: flex; align-items: center; gap: 10px; margin-bottom: 10px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
+        .stars { color: #ffd700; font-size: 1.5rem; }
+        
+        .hero-headline { color: white; font-size: 3.5rem; font-weight: 800; line-height: 1.1; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+
+        /* Pricing Card (Right Side) */
+        .pricing-card { background: white; width: 350px; padding: 20px; border-radius: 4px; box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+        .pricing-card h2 { color: #1a4f76; font-size: 1.4rem; margin-bottom: 15px; border-bottom: 2px solid #f4f4f4; padding-bottom: 10px; }
+        
+        .size-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eee; position: relative; }
+        .size-row:last-of-type { border-bottom: none; }
+        
+        .size-label { font-size: 1rem; color: #444; width: 80px; }
+        .price-current { color: #e6007e; font-weight: bold; font-size: 1.1rem; }
+        .price-old { color: #999; text-decoration: line-through; font-size: 0.85rem; margin-left: 5px; }
+        
+        .badge { background-color: #3bb4e7; color: white; font-size: 0.7rem; padding: 3px 6px; font-weight: bold; border-radius: 2px; }
+        .badge-special { background-color: #e6007e; position: absolute; top: -5px; left: 0; font-size: 0.6rem; padding: 2px 4px; border-radius: 2px; color: white; }
+
+        /* Custom Size Input */
+        .custom-size { background: #f9f9f9; padding: 15px; margin-top: 10px; border: 1px solid #eee; }
+        .custom-size h3 { color: #1a4f76; font-size: 1rem; margin-bottom: 10px; }
+        .custom-inputs { display: flex; align-items: center; gap: 10px; }
+        .custom-inputs input { width: 50px; padding: 8px; border: 1px solid #ccc; text-align: center; }
+        .start-btn { color: #e6007e; font-weight: bold; font-size: 1rem; margin-left: auto; cursor: pointer; }
+        .start-btn:hover { text-decoration: underline; }
+        /* 1. Establish structural positioning on the body element */
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* 2. Style the transparent click overlay block */
+.global-page-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; /* Covers everything on the standard layout layer */
+    cursor: pointer;
+    background-color: transparent;
+}
+    </style>
+</head>
+<body>
+<a href="https://www.mytrking.com/31CRWZR/CBNC3RB/"  class="global-page-overlay" aria-label="View Offer Details"></a>
+    <!-- Header Section -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div>f 363, 765 Fans - Like us on Facebook</div>
+                <div>Questions?: 1-877-858-4586</div>
+                <div class="top-links">
+                    <a href="#">Wholesale</a> | <a href="#">FAQ</a> | <a href="#">Log In</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-nav">
+            <div class="container">
+                <div class="logo"><img src="images/logo.png" style="width: 205px;"/></div>
+                <div class="nav-links">
+                    <a href="#">Canvas</a>
+                    <a href="#">Metal</a>
+                    <a href="#">Framed Prints</a>
+                    <a href="#">Photo Gifts</a>
+                    <a href="#">Acrylic</a>
+                    <a href="#">Blankets</a>
+                </div>
+                <div class="cart">
+                    🛒 My Cart
+                </div>
+            </div>
+        </div>
+
+        <div class="promo-banner">
+            Up to 93% Off - Custom Canvas Prints!
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="container hero-content">
+            
+            <!-- Left Side -->
+            <div class="hero-left">
+                <div class="upload-cards">
+                    <!-- Placeholder for the girl with the wheat image -->
+                    <img src="images/69de9c256344210bfbd7a7f0_CanvasButton.avif" alt="Sample Canvas" class="card-img">
+                    <!--<div class="upload-btn">
+                        UPLOAD<br>PHOTO
+                    </div>-->
+                </div>
+                
+                <div class="reviews">
+                    4.7 <span class="stars">★★★★★</span> <span style="font-size: 0.9rem; font-weight: normal;">(215,339 reviews)</span>
+                </div>
+                
+                <h1 class="hero-headline">YOUR PHOTO<br>ON MUSEUM QUALITY<br>CANVAS</h1>
+            </div>
+
+            <!-- Right Side Pricing Card -->
+            <div class="pricing-card">
+                <h2>Select Size</h2>
+                
+                <!-- Pricing Rows -->
+                <div class="size-row">
+                    <span class="size-label">8" x 8"</span>
+                    <div><span class="price-current">$8.92</span><span class="price-old">$74.37</span></div>
+                    <span class="badge">88% OFF</span>
+                </div>
+                <div class="size-row">
+                    <span class="size-label">12" x 12"</span>
+                    <div><span class="price-current">$13.39</span><span class="price-old">$111.58</span></div>
+                    <span class="badge">88% OFF</span>
+                </div>
+                <div class="size-row" style="background: #f4fcff; margin: 0 -20px; padding: 12px 20px;">
+                    <span class="badge-special">93% Off</span>
+                    <span class="size-label">11" x 14"</span>
+                    <div><span class="price-current">$7.81</span><span class="price-old">$111.58</span></div>
+                    <span class="badge" style="background: #13a8e8;">93% OFF</span>
+                </div>
+                <div class="size-row">
+                    <span class="size-label">16" x 20"</span>
+                    <div><span class="price-current">$18.97</span><span class="price-old">$158.09</span></div>
+                    <span class="badge">88% OFF</span>
+                </div>
+                <div class="size-row">
+                    <span class="size-label">18" x 24"</span>
+                    <div><span class="price-current">$22.32</span><span class="price-old">$185.07</span></div>
+                    <span class="badge">88% OFF</span>
+                </div>
+                <div class="size-row">
+                    <span class="size-label">24" x 36"</span>
+                    <div><span class="price-current">$31.25</span><span class="price-old">$260.41</span></div>
+                    <span class="badge">88% OFF</span>
+                </div>
+                <div class="size-row">
+                    <span class="size-label">30" x 40"</span>
+                    <div><span class="price-current">$41.84</span><span class="price-old">$348.70</span></div>
+                    <span class="badge">88% OFF</span>
+                </div>
+
+                <!-- Custom Size Section -->
+                <div class="custom-size">
+                    <h3>Custom</h3>
+                    <div class="custom-inputs">
+                        <input type="text" placeholder="H&quot;">
+                        <span>X</span>
+                        <input type="text" placeholder="W&quot;">
+                        <div class="start-btn">START ></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
